@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>תעודת משרת מילואים פעיל</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --banner-bg: #d1a97c;
+      --bg-top: #d1a97c;
+      --bg-bottom: #b88a5b;
+      --wave: #e8d9c5;
+      --text: #2b1e16;
+      --label: #5c4a3a;
+      --line: #c09468;
+      --white-soft: rgba(255, 255, 255, 0.92);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    body {
+      height: 100%;
+      min-height: 100dvh;
+      font-family: "Heebo", "Segoe UI", sans-serif;
+      background: #1a1510;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .certificate {
+      flex: 1 1 auto;
+      width: 100%;
+      max-width: 390px;
+      min-height: calc(100dvh - 24px);
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+      background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 55%);
+    }
+
+    /* Official IDF emblem — faint center watermark */
+    .watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .watermark img {
+      width: 78%;
+      max-width: 320px;
+      height: auto;
+      object-fit: contain;
+      opacity: 0.075;
+      /* Drop solid black from asset so only the gold mark shows over the gradient */
+      mix-blend-mode: lighten;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      padding: 0;
+    }
+
+    /* Banner: logo block visual-left (LTR), heading visual-right on two lines — tops aligned */
+    .top-banner {
+      direction: ltr;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      background-color: var(--banner-bg);
+      padding: 18px 18px 14px;
+      flex-shrink: 0;
+    }
+
+    .banner-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 65%;
+    }
+
+    .behatsdaa-logo {
+      display: block;
+      width: 100%;
+      max-width: 128px;
+      height: auto;
+      object-fit: contain;
+      object-position: left top;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .screen-title {
+      direction: rtl;
+      margin: 0;
+      padding: 0;
+      flex: 0 0 auto;
+      align-self: flex-start;
+      font-family: "Heebo", "Segoe UI", sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #000;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      unicode-bidi: isolate;
+      text-align: right;
+      margin-top: 52px;
+      margin-bottom: 40px;
+    }
+
+    .screen-title .title-line {
+      display: block;
+      text-align: right;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+
+    .content-main {
+      padding: 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .content-main > .rule:first-child {
+      margin-top: 4px;
+    }
+
+    .rule {
+      height: 1px;
+      background: var(--line);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field .label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--label);
+      margin-bottom: 4px;
+    }
+
+    .field .value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 24px;
+      margin-bottom: 18px;
+    }
+
+    .grid-2 .field {
+      margin-bottom: 0;
+    }
+
+    .grid-2 .field:nth-child(odd) {
+      text-align: right;
+    }
+
+    .grid-2 .field:nth-child(even) {
+      text-align: right;
+    }
+
+    .rule-spaced {
+      margin-top: 8px;
+      margin-bottom: 14px;
+    }
+
+    .notice-row {
+      direction: rtl;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 0 2px;
+    }
+
+    .icon-circle {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .notice-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+      flex: 1;
+      text-align: right;
+    }
+
+    .expiry-card {
+      direction: rtl;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      padding: 12px 8px 8px;
+    }
+
+    .clock-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1.5px solid var(--text);
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .clock-badge svg {
+      width: 19px;
+      height: 19px;
+      stroke: var(--text);
+      stroke-width: 1.65;
+      fill: none;
+    }
+
+    .expiry-copy {
+      direction: rtl;
+      display: inline-flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+
+    .expiry-copy .line {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .expiry-copy .date {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    /* Footer: wave → beige band (stamp) → dark tan bar — pinned to bottom of card */
+    .footer-wrap {
+      margin-top: auto;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .wave-svg {
+      display: block;
+      width: 100%;
+      height: 48px;
+      margin-bottom: -1px;
+    }
+
+    .wave-svg path {
+      fill: var(--wave);
+    }
+
+    .footer-panel {
+      background: var(--wave);
+      padding: 14px 16px 14px;
+      text-align: center;
+      direction: rtl;
+    }
+
+    .footer-panel p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .footer-bar-bottom {
+      height: 14px;
+      background: var(--bg-bottom);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="certificate" aria-label="תעודת מילואים פעיל">
+    <div class="watermark" aria-hidden="true">
+      <img src="idf-emblem.png" alt="">
+    </div>
+
+    <div class="content">
+      <header class="top-banner">
+        <div class="banner-brand">
+          <img
+            class="behatsdaa-logo"
+            src="behatsdaa-logo.png"
+            alt="בהצדעה! הטבות למשוחררים בכבוד ולמשרתי מילואים פעילים"
+            width="1024"
+            height="409"
+          >
+        </div>
+        <h1 class="screen-title">
+          <span class="title-line">משרת מילואים פעיל</span>
+        </h1>
+      </header>
+
+      <div class="content-main">
+      <div class="rule"></div>
+
+      <div class="field">
+        <div class="label">שם משפחה</div>
+        <div class="value" id="field-lastname">רותם</div>
+      </div>
+      <div class="field">
+        <div class="label">שם פרטי</div>
+        <div class="value" id="field-firstname">מאי</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <div class="label">מספר אישי</div>
+          <div class="value" id="field-mispar">8889259</div>
+        </div>
+        <div class="field">
+          <div class="label">מספר ת&quot;ז</div>
+          <div class="value" id="field-taz">213214034</div>
+        </div>
+        <div class="field">
+          <div class="label">מספר תעודה</div>
+          <div class="value">159689487</div>
+        </div>
+        <div class="field">
+          <div class="label">תאריך תחילת תוקף</div>
+          <div class="value">01.05.2024</div>
+        </div>
+      </div>
+
+      <div class="rule rule-spaced"></div>
+
+      <div class="notice-row">
+        <div class="icon-circle">!</div>
+        <p class="notice-text">זכאי לתעודת משרת מילואים פעיל</p>
+      </div>
+
+      <div class="rule"></div>
+
+      <div class="expiry-card">
+        <div class="clock-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v6l4 2"/>
+          </svg>
+        </div>
+        <div class="expiry-copy">
+          <span class="line">תאריך תום תוקף:</span>
+          <span class="date">21.06.2027</span>
+        </div>
+      </div>
+
+      </div>
+
+      <div class="footer-wrap">
+        <svg class="wave-svg" viewBox="0 0 390 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,32 Q48,8 96,20 T192,18 T288,22 T390,12 L390,48 L0,48 Z"/>
+        </svg>
+        <div class="footer-panel">
+          <p id="footer-stamp">צבא ההגנה לישראל</p>
+        </div>
+        <div class="footer-bar-bottom" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      function pad(n) {
+        return String(n).padStart(2, "0");
+      }
+      function formatStamp(date) {
+        var d = pad(date.getDate()) + "." + pad(date.getMonth() + 1) + "." + date.getFullYear();
+        var t = pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":" + pad(date.getSeconds());
+        return "צבא ההגנה לישראל " + d + " - " + t;
+      }
+
+      /** Strip control chars / bidi overrides; never inject HTML (use textContent only). */
+      function sanitizeBase(raw, maxLen) {
+        if (raw == null) return "";
+        var s = String(raw).trim().slice(0, maxLen);
+        return s.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/g, "");
+      }
+
+      /** Names: Hebrew, Latin letters, marks, spaces, common punctuation */
+      function sanitizeName(raw, maxLen) {
+        var s = sanitizeBase(raw, maxLen);
+        return s.replace(/[^\u0590-\u05FF\u0600-\u06FFa-zA-Z\u0300-\u036f\s'\-\.·]/g, "");
+      }
+
+      /** National ID / personal number: digits only */
+      function sanitizeDigits(raw, maxLen) {
+        var s = sanitizeBase(raw, maxLen + 32);
+        return s.replace(/\D/g, "").slice(0, maxLen);
+      }
+
+      function applyQueryFields() {
+        var params = new URLSearchParams(window.location.search);
+        var pairs = [
+          { param: "lastname", id: "field-lastname", fn: function (v) { return sanitizeName(v, 48); } },
+          { param: "name", id: "field-firstname", fn: function (v) { return sanitizeName(v, 48); } },
+          { param: "mispar", id: "field-mispar", fn: function (v) { return sanitizeDigits(v, 14); } },
+          { param: "taz", id: "field-taz", fn: function (v) { return sanitizeDigits(v, 12); } }
+        ];
+        for (var i = 0; i < pairs.length; i++) {
+          var p = pairs[i];
+          if (!params.has(p.param)) continue;
+          var el = document.getElementById(p.id);
+          if (!el) continue;
+          var val = p.fn(params.get(p.param));
+          if (val !== "") el.textContent = val;
+        }
+      }
+
+      var stamp = document.getElementById("footer-stamp");
+      if (stamp) stamp.textContent = formatStamp(new Date());
+      applyQueryFields();
+    })();
+  </script>
+</body>
+</html>
